@@ -1,0 +1,43 @@
+<mat-sidenav-container fullscreen>
+
+
+
+    <mat-sidenav mode="side" #sidenav closed position="start">
+      <app-menu></app-menu>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+
+      <mat-toolbar style="height: 60px;">
+        <button mat-mini-fab style="background-color: #376092;" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+
+        <img src="assets/images/digicotton_logo.png" style="height: 60px;">
+        <span class="toolbar-spacer"></span>
+        
+        <div class="button-container">
+          <!--<button mat-raised-button (click)="navigateToGuide()" style="background-color: #376092; color: white;">Οδηγός</button>-->
+          <button mat-raised-button (click)="navigateToMeteo()" style="background-color: #376092; color: white;">Μετεωρολογικά Δεδομένα</button>
+          <button mat-raised-button (click)="navigateToPortfolio()" style="background-color: #376092; color: white;">Διανυσματικά αρχεία</button>
+          <app-warnings></app-warnings>
+          <button mat-raised-button color="warn" (click)="authService.SignOut()">Αποσύνδεση</button>
+        </div>        
+
+      </mat-toolbar>
+
+
+
+
+      <div class="main-content">
+        <app-map></app-map>
+      </div>
+
+
+
+    </mat-sidenav-content>
+
+    
+  </mat-sidenav-container>

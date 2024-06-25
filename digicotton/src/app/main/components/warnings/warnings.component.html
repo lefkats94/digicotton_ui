@@ -1,0 +1,3 @@
+
+<button *ngIf="!isRegistered;" mat-raised-button (click)="addAccount()" style="background-color: #376092; color: white;">Θέλω να λαμβάνω ειδοποιήσεις</button>
+<button *ngIf="isRegistered;" mat-raised-button (click)="removeAccount()" style="background-color: #376092; color: white;">Δεν Θέλω να λαμβάνω ειδοποιήσεις</button>

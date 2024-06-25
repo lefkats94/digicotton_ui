@@ -1,0 +1,11 @@
+<div class="toggle-buttons">
+    <!--
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'sos'" (change)="onSelectTool('sos', false)"><p class="button-text">Start of Season</p></mat-slide-toggle>
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'pos'" (change)="onSelectTool('pos', false)"><p class="button-text">Peak of Season</p></mat-slide-toggle>
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'eos'" (change)="onSelectTool('eos', false)"><p class="button-text">End of Season</p></mat-slide-toggle>
+    -->
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'ndvi'" (change)="onSelectTool('ndvi', true)"><p class="button-text">Δείκτης Βλάστησης</p></mat-slide-toggle>
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'ndmi'" (change)="onSelectTool('ndmi', true)"><p class="button-text">Δείκτης Υγρασίας</p></mat-slide-toggle>
+    <mat-slide-toggle class="custom-slide-toggle" [checked]="checkedOption === 'bsi'" (change)="onSelectTool('bsi', true)"><p class="button-text">Δείκτης Άγονου Εδάφους</p></mat-slide-toggle>
+</div>
+

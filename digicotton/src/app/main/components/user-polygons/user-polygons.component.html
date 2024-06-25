@@ -1,0 +1,9 @@
+<div style="display: flex; flex-direction: column; align-items: center; height: 10%;">
+    <mat-form-field>
+      <mat-label>Επιλέξτε Πολύγωνο</mat-label>
+      <mat-select [(ngModel)]="selectedUserPolygonValue" (selectionChange)="selectUserPolygon($event)">
+        <mat-option *ngFor="let polygon of availableUserPolygons" [value]="polygon">{{ polygon }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  

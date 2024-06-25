@@ -1,0 +1,44 @@
+<div class="displayTable">
+  <div class="displayTableCell">
+    <div class="authBlock">
+      <img src="assets/images/digicotton_logo.png" style="height: 120px; display: block; margin-left: auto; margin-right: auto;">
+      <h3>Εγγραφή</h3>
+
+      <div class="formGroup">
+        <input
+          type="email"
+          class="formControl"
+          placeholder="Διεύθυνση Ηλεκτρονικού Ταχυδρομείου"
+          #userEmail
+          required
+        />
+      </div>
+
+      <div class="formGroup">
+        <input
+          type="password"
+          class="formControl"
+          placeholder="Κωδικός Πρόσβασης"
+          #userPwd
+          required
+        />
+      </div>
+
+      <div class="formGroup">
+        <input
+          type="button"
+          class="btn btnPrimary"
+          value="Εγγραφή"
+          (click)="authService.SignUp(userEmail.value, userPwd.value)"
+        />
+      </div>
+
+      <div class="formGroup">
+        <span class="or"><span class="orInner">Ή</span></span>
+      </div>
+
+    <div class="redirectToLogin">
+      <span class="redirect" routerLink="/sign-in">Έχετε ήδη λογαριασμό;</span>
+    </div>
+  </div>
+</div>

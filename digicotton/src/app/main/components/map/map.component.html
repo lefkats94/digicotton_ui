@@ -1,0 +1,7 @@
+<div class="map-container">
+    <div class="map-frame">
+      <div id="map"></div>
+      <button (click)="toggleLegend()" class="legend-button">Legend</button>
+      <app-legends *ngIf="showLegend"></app-legends>
+    </div>
+  </div>

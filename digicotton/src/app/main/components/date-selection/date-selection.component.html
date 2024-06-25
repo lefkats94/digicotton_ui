@@ -1,0 +1,8 @@
+<div style="display: flex; flex-direction: column; align-items: center; height: 10%;">
+  <mat-form-field>
+    <mat-label>Επιλέξτε Ημερομηνία</mat-label>
+    <mat-select [(ngModel)]="selectedDateDisplayed" (selectionChange)="selectDate($event)">
+      <mat-option *ngFor="let date of availableDatesGreek" [value]="date">{{ date }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

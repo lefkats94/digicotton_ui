@@ -1,0 +1,21 @@
+table {
+    width: 50% !important; /* Adjust the width as needed */
+    margin: auto; /* Center the table horizontally */
+  }
+  
+  /* Optional: Add some padding to the table */
+  mat-table {
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  th {
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+  }
+
+  td {
+    font-size: 16px;
+    font-family: Verdana, sans-serif;
+  }

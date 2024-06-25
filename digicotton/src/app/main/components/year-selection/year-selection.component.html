@@ -1,0 +1,9 @@
+<div style="display: flex; flex-direction: column; align-items: center; height: 10%;">
+    <mat-form-field>
+      <mat-label>Επιλέξτε Χρονιά</mat-label>
+      <mat-select [(ngModel)]="selectedYearValue" (selectionChange)="selectYear($event)">
+        <mat-option *ngFor="let year of availableYears" [value]="year">{{ year }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  

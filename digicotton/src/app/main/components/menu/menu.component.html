@@ -1,0 +1,23 @@
+<div style="display: flex; flex-direction: column; align-items: center; height: 10%;">
+    <h1>ΜΕΝΟΥ</h1>
+</div>
+
+<!-- polygon selection -->
+<app-user-polygons (selectedUserPolygon)="onUserPolygonSelected($event)"></app-user-polygons>
+
+<!-- visualization selection -->
+<app-year-selection (selectedYear)="onYearSelected($event)"></app-year-selection>
+<app-date-selection *ngIf="allowDateSelection" (selectedDate)="onDateSelected($event)"></app-date-selection>
+<app-tool-selection #childComponentRef (selectedTool)="onToolSelected($event)"></app-tool-selection>
+
+<!-- submit task if polygon, tool and year/date are selected -->
+<br><br>
+<div style="display: flex; flex-direction: column; align-items: center; height: 10%;">
+    <button mat-raised-button color="accent" [disabled]="!isFormValid()" (click)="onSubmit()">Υποβολή</button>
+    <br>
+    <button mat-raised-button color="accent" [disabled]="!submitted" (click)="onDownloadTif()">Λήψη GeoTIFF αρχείου</button>
+    <!--
+    <br>
+    <button mat-raised-button color="accent" [disabled]="!submitted" (click)="onDownloadPng()">Λήψη png αρχείου</button>
+    -->
+</div>

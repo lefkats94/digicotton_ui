@@ -1,0 +1,26 @@
+/* Style for the custom file upload input */
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #376092; /* Change the background color as needed */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px; /* Adjust spacing as needed */
+    font-family: Verdana, sans-serif;
+  }
+  
+  .container {
+    text-align: center; /* Center align the contents horizontally */
+}
+
+.input-wrapper {
+    margin-bottom: 10px; /* Add some space between the input and the button */
+}

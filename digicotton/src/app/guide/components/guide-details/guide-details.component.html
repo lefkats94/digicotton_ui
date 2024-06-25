@@ -1,0 +1,445 @@
+
+<div class="d-flex justify-content-center flex-wrap">
+  <button (click)="toggleInfo()" mat-button style="background-color: #454545; font-size: 16px; font-family: Verdana, sans-serif;">
+    <mat-icon>{{ isOpenInfo ? 'expand_less' : 'expand_more' }}</mat-icon>
+    Πληροφορίες
+  </button>
+  
+  <div class="button-container1">
+    <button
+      mat-button
+      [ngClass]="{ 'selected_method': selectedMethod === 'Καλλιεργητικές Πρακτικές', 'unselected_method': selectedMethod !== 'Καλλιεργητικές Πρακτικές' }"
+      (click)="selectMethod('Καλλιεργητικές Πρακτικές')"
+      style="font-size: 16px; font-family: Verdana, sans-serif;"
+    >
+      Καλλιεργητικές Πρακτικές
+    </button>
+  
+    <button
+      mat-button
+      [ngClass]="{ 'selected_method': selectedMethod === 'Καλλιεργητικές φροντίδες', 'unselected_method': selectedMethod !== 'Καλλιεργητικές φροντίδες' }"
+      (click)="selectMethod('Καλλιεργητικές φροντίδες')"
+      style="font-size: 16px; font-family: Verdana, sans-serif;"
+    >
+      Καλλιεργητικές φροντίδες
+    </button>
+  
+    <button
+      mat-button
+      [ngClass]="{ 'selected_method': selectedMethod === 'Πρακτικές Συγκομιδής', 'unselected_method': selectedMethod !== 'Πρακτικές Συγκομιδής' }"
+      (click)="selectMethod('Πρακτικές Συγκομιδής')"
+      style="font-size: 16px; font-family: Verdana, sans-serif;"
+    >
+      Πρακτικές Συγκομιδής
+    </button>
+  </div>
+  
+  <div class="button-container2">
+  <button
+    mat-button
+    [ngClass]="{ 'selected_mandatory': selectedMandatory === 'Υποχρεωτική Εφαρμογή', 'unselected_mandatory': selectedMandatory !== 'Υποχρεωτική Εφαρμογή' }"
+    (click)="selectMandatory('Υποχρεωτική Εφαρμογή')"
+    style="font-size: 16px; font-family: Verdana, sans-serif;">
+  Υποχρεωτική Εφαρμογή
+  </button>
+  <button
+    mat-button
+    [ngClass]="{ 'selected_mandatory': selectedMandatory === 'Μη Υποχρεωτική Εφαρμογή', 'unselected_mandatory': selectedMandatory !== 'Μη Υποχρεωτική Εφαρμογή' }"
+    (click)="selectMandatory('Μη Υποχρεωτική Εφαρμογή')"
+    style="font-size: 16px; font-family: Verdana, sans-serif;">
+  Μη Υποχρεωτική Εφαρμογή
+  </button>
+  </div>
+
+</div>
+
+<div *ngIf="showInfo" class="table-container" style="padding: 10px; font-size: 16px; font-family: Verdana, sans-serif;">
+  <mat-card>
+    <mat-card-header class="title_center">
+      <mat-card-title>Πίνακας Οδηγιών Ολοκληρωμένης Φυτοπροστασίας</mat-card-title>
+    </mat-card-header>
+    <br>
+      <mat-card-content>
+        <p style="text-align: justify;">Οι Οδηγίες Ολοκληρωμένης Φυτοπροστασίας δίδονται με την μορφή πίνακα που αποτελείται από 3 στήλες:
+        Στην πρώτη στήλη περιγράφεται η καλλιεργητική πρακτική. 
+        Στην δεύτερη στήλη αναφέρεται η Αιτιολόγηση της αναφερόμενης καλλιεργητικής πρακτικής καθώς και άλλα σχόλια
+        Στην τρίτη στήλη προσδιορίζονται οι Ειδικές Κατευθυντήριες Γραμμές Ολοκληρωμένης Φυτοπροστασίας της καλλιέργεια με σκοπό 
+        την εθελοντική άσκηση και εξοικείωση των παραγωγών, με στόχο την ανάπτυξη κινήτρων για την εφαρμογής τους.
+        Η υποχρεωτική ή μή εφαρμογή χαρακτηρίζεται έτσι σύμφωνα με τις Γενικές Αρχές Ολοκληρωμένης 
+        Φυτοπροστασίας, που πρέπει να εφαρμόζονται υποχρεωτικά από τους παραγωγούς από 01-1-2014 και να λαμβάνεται υπόψη από όλους 
+        τους εμπλεκόμενους στην φυτοπροστασία των καλλιεργειών κατά την άσκηση των επαγγελματικών τους δραστηριοτήτων.
+        </p>
+        </mat-card-content>
+  </mat-card>
+</div>
+
+<br *ngIf="dataSource1 && dataSource1.length > 0">
+<div *ngIf="dataSource1 && dataSource1.length > 0" class="table-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource1" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns; let first = first" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white; width: 36%;">
+        <div style="display: flex; align-items: center;">
+          <ng-container *ngIf="first">
+            <mat-icon>{{ isOpenTable1 ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </ng-container>
+          <span style="margin-left: 4px; font-size: 16px; font-family: Verdana, sans-serif;">{{ columnNames1[column] }}</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" (click)="toggleTable1()" style="cursor: pointer;"></tr>
+  </table>
+
+  <table *ngIf="showTable1" mat-table [dataSource]="dataSource1" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef> {{ columnNames1[column] }} </th>
+      <td mat-cell *matCellDef="let element" style="width: 36%; font-size: 16px; font-family: Verdana, sans-serif;" [innerHTML]="element[column]"></td>
+    </ng-container>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+
+<br *ngIf="dataSource2 && dataSource2.length > 0">
+<div *ngIf="dataSource2 && dataSource2.length > 0" class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource2" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns; let first = first" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white; width: 36%;">
+        <div style="display: flex; align-items: center;">
+          <ng-container *ngIf="first">
+            <mat-icon>{{ isOpenTable2 ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </ng-container>
+          <span style="margin-left: 4px; font-size: 16px; font-family: Verdana, sans-serif;">{{ columnNames2[column] }}</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" (click)="toggleTable2()" style="cursor: pointer;"></tr>
+  </table>
+
+  <table *ngIf="showTable2" mat-table [dataSource]="dataSource2" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white;"> {{ columnNames2[column] }} </th>
+      <td mat-cell *matCellDef="let element" style="width: 36%; font-size: 16px; font-family: Verdana, sans-serif;" [innerHTML]="element[column]"></td>
+    </ng-container>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<br *ngIf="dataSource3 && dataSource3.length > 0">
+<div *ngIf="dataSource3 && dataSource3.length > 0" class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource3" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns; let first = first" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white; width: 36%;">
+        <div style="display: flex; align-items: center;">
+          <ng-container *ngIf="first">
+            <mat-icon>{{ isOpenTable3 ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </ng-container>
+          <span style="margin-left: 4px; font-size: 16px; font-family: Verdana, sans-serif;">{{ columnNames3[column] }}</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" (click)="toggleTable3()" style="cursor: pointer;"></tr>
+  </table>
+
+  <table *ngIf="showTable3" mat-table [dataSource]="dataSource3" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white;"> {{ columnNames3[column] }} </th>
+      <td mat-cell *matCellDef="let element" style="width: 36%; font-size: 16px; font-family: Verdana, sans-serif;" [innerHTML]="element[column]"></td>
+    </ng-container>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<br *ngIf="dataSource4 && dataSource4.length > 0">
+<div *ngIf="dataSource4 && dataSource4.length > 0" class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource4" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns; let first = first" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white; width: 36%;">
+        <div style="display: flex; align-items: center;">
+          <ng-container *ngIf="first">
+            <mat-icon>{{ isOpenTable4 ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </ng-container>
+          <span style="margin-left: 4px; font-size: 16px; font-family: Verdana, sans-serif;">{{ columnNames4[column] }}</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" (click)="toggleTable4()" style="cursor: pointer;"></tr>
+  </table>
+
+  <table *ngIf="showTable4" mat-table [dataSource]="dataSource4" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white;"> {{ columnNames4[column] }} </th>
+      <td mat-cell *matCellDef="let element" style="width: 36%; font-size: 16px; font-family: Verdana, sans-serif;" [innerHTML]="element[column]"></td>
+    </ng-container>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<br *ngIf="dataSource5 && dataSource5.length > 0">
+<div *ngIf="dataSource5 && dataSource5.length > 0" class="table-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource5" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns; let first = first" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white; width: 36%;">
+        <div style="display: flex; align-items: center;">
+          <ng-container *ngIf="first">
+            <mat-icon>{{ isOpenTable5 ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </ng-container>
+          <span style="margin-left: 4px; font-size: 16px; font-family: Verdana, sans-serif;">{{ columnNames5[column] }}</span>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" (click)="toggleTable5()" style="cursor: pointer;"></tr>
+  </table>
+
+  <table *ngIf="showTable5" mat-table [dataSource]="dataSource5" class="mat-table">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #454545; color: white;"> {{ columnNames5[column] }} </th>
+      <td mat-cell *matCellDef="let element" style="width: 36%; font-size: 16px; font-family: Verdana, sans-serif;" [innerHTML]="element[column]"></td>
+    </ng-container>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+<!--
+<mat-stepper orientation="vertical">
+    
+    <ng-template matStepperIcon="edit">
+      <mat-icon>library_books</mat-icon>
+    </ng-template>
+
+    
+    <mat-step>
+      <ng-template matStepLabel>
+        <h1 style="display: inline">Καλλιεργητικές φροντίδες</h1>
+      </ng-template>
+      <ng-template matStepContent>
+        <div style="font-size: 20px; line-height: 26px; text-align: justify">
+            <img src="assets/images/guide/A.png">
+        </div>
+      </ng-template>
+    </mat-step>
+
+   
+    <mat-step>
+      <ng-template matStepLabel>
+        <h1 style="display: inline">Καλλιεργητικές Πρακτικές</h1>
+      </ng-template>
+      <ng-template matStepContent>
+        <div
+          style="font-size: 20px; line-height: 26px; text-align: justify">
+
+          
+          <mat-stepper orientation="vertical">
+            
+            <ng-template matStepperIcon="edit">
+              <mat-icon>library_books</mat-icon>
+            </ng-template>
+
+            <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Προληπτικά Μέτρα</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/B1.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Προετοιμασία Εδάφους</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/B2.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Καλλιεργητικά Μέτρα</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/B3.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Χημική Αντιμετώπιση </h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/B4.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Από το φύτρωμα μέχρι την έναρξη του καλαμώματος</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div style="font-size: 20px; line-height: 26px; text-align: justify">
+
+                  
+                  <mat-stepper orientation="vertical">
+                    
+                    <ng-template matStepperIcon="edit">
+                      <mat-icon>library_books</mat-icon>
+                    </ng-template>
+
+                    <mat-step>
+                        <ng-template matStepLabel>
+                          <h1 style="display: inline">Προσβολές από τα έντομα Chironomous sp.</h1>
+                        </ng-template>
+                        <ng-template matStepContent>
+                          <div
+                            style="font-size: 20px; line-height: 26px; text-align: justify">
+                            <img src="assets/images/guide/B5a.png">
+                          </div>
+                        </ng-template>
+                      </mat-step>
+
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <h1 style="display: inline">Προσβολές από δίπτερα της οικογένειας Ephydridae</h1>
+                        </ng-template>
+                        <ng-template matStepContent>
+                          <div
+                            style="font-size: 20px; line-height: 26px; text-align: justify">
+                            <img src="assets/images/guide/B5b.png">
+                          </div>
+                        </ng-template>
+                      </mat-step>
+
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <h1 style="display: inline">Προσβολές από το μύκητα Pyricularia oryzae</h1>
+                        </ng-template>
+                        <ng-template matStepContent>
+                          <div
+                            style="font-size: 20px; line-height: 26px; text-align: justify">
+                            <img src="assets/images/guide/B5c.png">
+                          </div>
+                        </ng-template>
+                      </mat-step>
+
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <h1 style="display: inline">Προσβολή από φουζαρίωση</h1>
+                        </ng-template>
+                        <ng-template matStepContent>
+                          <div
+                            style="font-size: 20px; line-height: 26px; text-align: justify">
+                            <img src="assets/images/guide/B5d.png">
+                          </div>
+                        </ng-template>
+                      </mat-step>
+
+                      <mat-step>
+                        <ng-template matStepLabel>
+                          <h1 style="display: inline">Προσβολή από ελμινθοσπορίαση</h1>
+                        </ng-template>
+                        <ng-template matStepContent>
+                          <div
+                            style="font-size: 20px; line-height: 26px; text-align: justify">
+                            <img src="assets/images/guide/B5e.png">
+                          </div>
+                        </ng-template>
+                      </mat-step>
+
+                  </mat-stepper>
+
+                  </div>
+                </ng-template>
+              </mat-step>
+
+          </mat-stepper>
+        </div>
+      </ng-template>
+    </mat-step>
+
+    
+    <mat-step>
+      <ng-template matStepLabel>
+        <h1 style="display: inline">Πρακτικές Συγκομιδής</h1>
+      </ng-template>
+      <ng-template matStepContent>
+        <div
+          style="font-size: 20px; line-height: 26px; text-align: justify">
+          <mat-stepper orientation="vertical">
+           
+            <ng-template matStepperIcon="edit">
+              <mat-icon>library_books</mat-icon>
+            </ng-template>
+
+            <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Συγκομιδή ρυζιού</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/C1.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Συγκομιδή</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/C2.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Αποθήκευση / Προετοιμασία του χώρου</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/C3.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  <h1 style="display: inline">Αποθήκευση / Κατάλληλες συνθήκες</h1>
+                </ng-template>
+                <ng-template matStepContent>
+                  <div
+                    style="font-size: 20px; line-height: 26px; text-align: justify">
+                    <img src="assets/images/guide/C4.png">
+                  </div>
+                </ng-template>
+              </mat-step>
+
+          </mat-stepper>
+        </div>
+      </ng-template>
+    </mat-step>    
+  </mat-stepper>
+-->
